@@ -28,7 +28,6 @@ class MovieBloc {
     _movieFetcher.sink.add(movieResponse);
   }
 
-
   dispose(){
     _movieFetcher.close();
   }
