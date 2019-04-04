@@ -6,6 +6,7 @@ import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tmdb/ui/helper/custom_page_route.dart';
+import 'package:flutter_tmdb/ui/widget/network_image.dart';
 
 class MovieTabScreen extends StatefulWidget {
   int _indexTab;
@@ -73,10 +74,7 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
         childAspectRatio: sizeImageWidth / sizeImageHeight),
     itemBuilder: (BuildContext context, int index) {
       final Movie movie = snapshot.data.results[index];
-      final image = Image.network(
-        'https://image.tmdb.org/t/p/w500${movie.poster_path}',
-        fit: BoxFit.fitWidth,
-      );
+      final image = new ImageNetWork('https://image.tmdb.org/t/p/w500${movie.poster_path}');
       final textName = Text(
         movie.title,
         textAlign: TextAlign.center,
