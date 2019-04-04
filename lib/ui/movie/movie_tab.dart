@@ -4,6 +4,8 @@ import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
 import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_tmdb/ui/helper/custom_page_route.dart';
 
 class MovieTabScreen extends StatefulWidget {
   int _indexTab;
@@ -61,7 +63,7 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
 
   openDetailMoviePage(Movie movie) {
     print(movie.title);
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> new MovieDetail(movie)));
+    Navigator.push(context, FadeTransactionPageRoute(new MovieDetail(movie)));
   }
 
   return GridView.builder(

@@ -22,3 +22,15 @@ final String upComingApi =
     "http://api.themoviedb.org/3/movie/upcoming?api_key=$_apiKey";
 final String topRatedApi =
     "http://api.themoviedb.org/3/movie/top_rated?api_key=$_apiKey";
+
+//TV Api
+final String tvAiringTodayApi =
+    "http://api.themoviedb.org/3/tv/airing_today?api_key=$_apiKey";
+final String tvOnTheAirApi =
+    "http://api.themoviedb.org/3/tv/on_the_air?api_key=$_apiKey";
+final String tvPopularApi =
+    "http://api.themoviedb.org/3/tv/popular?api_key=$_apiKey";
+final String tvTopRatedApi =
+    "http://api.themoviedb.org/3/tv/top_rated?api_key=$_apiKey";
+
+
