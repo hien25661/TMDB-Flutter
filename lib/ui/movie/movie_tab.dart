@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/blocs/movie_bloc.dart';
 import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
+import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
 
 class MovieTabScreen extends StatefulWidget {
@@ -54,10 +55,14 @@ class _MovieTabScreenState extends State<MovieTabScreen> {
   }
 }
 
-
 Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
   double sizeImageWidth = getScreenWidth(context) / 3.0;
   double sizeImageHeight = 3.0 * sizeImageWidth / 2.0 + 50;
+
+  openDetailMoviePage(Movie movie) {
+    print(movie.title);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> new MovieDetail(movie)));
+  }
 
   return GridView.builder(
     gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
@@ -79,8 +84,14 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
       final column = Column(
         children: <Widget>[image, SizedBox(height: 10), textName],
       );
-      return column;
+
+      final GestureDetector gestureDetector = new GestureDetector(
+        onTap:()=> openDetailMoviePage(movie),
+        child: column,
+      );
+      return gestureDetector;
     },
     itemCount: snapshot.data.results.length,
   );
 }
+
