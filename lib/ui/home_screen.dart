@@ -9,10 +9,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceHolderWidget(Colors.white, 0),
-    PlaceHolderWidget(Colors.deepOrange, 1),
-    PlaceHolderWidget(Colors.green, 2),
-    PlaceHolderWidget(Colors.amber, 3)
+    new PlaceHolderWidget(Colors.white, 0),
+    new PlaceHolderWidget(Colors.deepOrange, 1),
+    new PlaceHolderWidget(Colors.green, 2),
+    new PlaceHolderWidget(Colors.amber, 3)
   ];
   BuildContext mContext;
 
@@ -116,38 +116,30 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class PlaceHolderWidget extends StatefulWidget {
+class PlaceHolderWidget extends StatelessWidget {
   final Color color;
   final int _currentIndex;
 
   PlaceHolderWidget(this.color, this._currentIndex);
 
   @override
-  _PlaceHolderWidgetState createState() =>
-      _PlaceHolderWidgetState(color, _currentIndex);
-}
-
-class _PlaceHolderWidgetState extends State<PlaceHolderWidget> {
-  final Color color;
-  final int _currentIndex;
-
-  _PlaceHolderWidgetState(this.color, this._currentIndex);
-
-  @override
   Widget build(BuildContext context) {
+
+    List<Tab> tabs = new List();
+    tabs.add(Tab(text: _currentIndex == 0 ? "NOW PLAYING" : "AIRING TODAY"));
+    tabs.add(Tab(text: _currentIndex == 0 ? "POPULAR" : "ON THE AIR"));
+    tabs.add(Tab(text: _currentIndex == 0 ? "UPCOMMING" : "POPULAR"));
+    tabs.add( Tab(text: "TOP RATED"));
+    if(_currentIndex == 0){
+      tabs.add(Tab(text: "MOVIE BY YEAR"));
+    }
+
     final TabBar tabBar = new TabBar(
       isScrollable: true,
       indicatorColor: Colors.amber,
-      labelColor:Colors.white70,
+      labelColor: Colors.white70,
       unselectedLabelColor: Colors.white,
-
-      tabs: const <Tab>[
-        const Tab(text: "NOW PLAYING"),
-        const Tab(text: "POPULAR"),
-        const Tab(text: "UPCOMMING"),
-        const Tab(text: "TOP RATED"),
-        const Tab(text: "MOVIE BY YEAR")
-      ],
+      tabs: tabs,
       indicatorSize: TabBarIndicatorSize.tab,
     );
 
@@ -178,3 +170,4 @@ class _PlaceHolderWidgetState extends State<PlaceHolderWidget> {
     );
   }
 }
+

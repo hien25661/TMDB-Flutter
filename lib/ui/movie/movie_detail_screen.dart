@@ -25,7 +25,9 @@ class _MovieDetailState extends State<MovieDetail> {
 
     final Column parent = new Column(
       mainAxisSize: MainAxisSize.max,
-      children: <Widget>[],
+      children: <Widget>[
+
+      ],
     );
 
     final NestedScrollView nestedScrollView = new NestedScrollView(
