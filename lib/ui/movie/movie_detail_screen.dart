@@ -115,8 +115,6 @@ class _MovieDetailState extends State<MovieDetail> {
       ),
     );
 
-
-
     return new Expanded(
         child: new ListView(
       padding: EdgeInsets.all(0.0),
