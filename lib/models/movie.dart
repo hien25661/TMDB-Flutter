@@ -91,3 +91,71 @@ class Movie {
 
   int get vote_count => _vote_count;
 }
+
+//==============================================================================
+class MovieImageResponse {
+  int _id;
+  List<MovieImage> _backdrops = [];
+  List<MovieImage> _posters = [];
+
+  MovieImageResponse.fromJson(Map<String, dynamic> parsedJson) {
+    _id = parsedJson['id'];
+    List<MovieImage> temp1 = [];
+    for (int i = 0; i < parsedJson['backdrops'].length; i++) {
+      MovieImage image = MovieImage(parsedJson['backdrops'][i]);
+      temp1.add(image);
+    }
+    _backdrops = temp1;
+
+    List<MovieImage> temp2 = [];
+    for (int i = 0; i < parsedJson['posters'].length; i++) {
+      MovieImage image = MovieImage(parsedJson['posters'][i]);
+      temp2.add(image);
+    }
+    _posters = temp2;
+  }
+
+  List<MovieImage> get posters => _posters;
+
+  List<MovieImage> get backdrops => _backdrops;
+
+  int get id => _id;
+
+}
+
+
+class MovieImage {
+  double _aspect_ratio;
+  String _file_path;
+  int _height;
+  String _iso_639_1;
+  int _vote_average;
+  int _vote_count;
+  int _width;
+
+  MovieImage(parsedJson){
+    _aspect_ratio = parsedJson['aspect_ratio'];
+    _file_path = parsedJson['file_path'];
+    _height = parsedJson['height'];
+    _iso_639_1 = parsedJson['iso_639_1'];
+    _vote_average = parsedJson['vote_average'];
+    _vote_count = parsedJson['vote_count'];
+    _width = parsedJson['width'];
+  }
+
+  int get width => _width;
+
+  int get vote_count => _vote_count;
+
+  int get vote_average => _vote_average;
+
+  String get iso_639_1 => _iso_639_1;
+
+  int get height => _height;
+
+  String get file_path => _file_path;
+
+  double get aspect_ratio => _aspect_ratio;
+
+
+}

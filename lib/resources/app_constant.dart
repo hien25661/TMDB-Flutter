@@ -1,3 +1,8 @@
+//const
+final String imageMoviePosterPlaceHolder = "images/movie_place_holder.png";
+final String imageMovieBackDropPlaceHolder =
+    "images/movie_backdrop_movie_place_holder.png";
+
 final List<String> years = [
   "2019",
   "2018",
@@ -23,6 +28,10 @@ final String upComingApi =
 final String topRatedApi =
     "http://api.themoviedb.org/3/movie/top_rated?api_key=$_apiKey";
 
+String movieImageApi(int movieId) {
+  return "http://api.themoviedb.org/3/movie/$movieId/image?api_key=$_apiKey";
+}
+//==============================================================================
 //TV Api
 final String tvAiringTodayApi =
     "http://api.themoviedb.org/3/tv/airing_today?api_key=$_apiKey";
@@ -32,5 +41,3 @@ final String tvPopularApi =
     "http://api.themoviedb.org/3/tv/popular?api_key=$_apiKey";
 final String tvTopRatedApi =
     "http://api.themoviedb.org/3/tv/top_rated?api_key=$_apiKey";
-
-

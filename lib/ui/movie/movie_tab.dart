@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/blocs/movie_bloc.dart';
 import 'package:flutter_tmdb/models/movie.dart';
+import 'package:flutter_tmdb/resources/app_constant.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
 import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
@@ -74,7 +75,9 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
         childAspectRatio: sizeImageWidth / sizeImageHeight),
     itemBuilder: (BuildContext context, int index) {
       final Movie movie = snapshot.data.results[index];
-      final image = new ImageNetWork('https://image.tmdb.org/t/p/w500${movie.poster_path}');
+      final image = new ImageNetWork(
+          'https://image.tmdb.org/t/p/w500${movie.poster_path}',
+          imageMoviePosterPlaceHolder);
       final textName = Text(
         movie.title,
         textAlign: TextAlign.center,
@@ -86,7 +89,7 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
       );
 
       final GestureDetector gestureDetector = new GestureDetector(
-        onTap:()=> openDetailMoviePage(movie),
+        onTap: () => openDetailMoviePage(movie),
         child: column,
       );
       return gestureDetector;
@@ -94,4 +97,3 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
     itemCount: snapshot.data.results.length,
   );
 }
-

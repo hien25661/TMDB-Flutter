@@ -41,6 +41,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - images/movie_place_holder.png
+  - images/movie_backdrop_movie_place_holder.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

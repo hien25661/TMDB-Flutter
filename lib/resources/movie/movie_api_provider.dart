@@ -46,5 +46,14 @@ class MovieApiProvider {
     }
   }
 
+  Future<MovieImageResponse> fetchMovieImageList(int movieId) async {
+    final response = await client.get(movieImageApi(movieId));
+    if(response.statusCode == 200){
+      return MovieImageResponse.fromJson(json.decode(response.body));
+    }else {
+      throw Exception("Failed to get data");
+    }
+  }
+
 
 }

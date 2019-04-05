@@ -6,7 +6,10 @@ class MovieBloc {
   final _repository = new Repository();
   final _movieFetcher = PublishSubject<MovieResponse>();
 
+  final _movieImageFetcher = PublishSubject<MovieImageResponse>();
+
   Observable<MovieResponse> get movieList => _movieFetcher.stream;
+  Observable<MovieImageResponse> get movieImageList => _movieImageFetcher.stream;
 
   fetchAllMoviesNowPlaying() async {
     MovieResponse movieResponse = await _repository.fetchMovieListNowPlaying();
@@ -28,8 +31,15 @@ class MovieBloc {
     _movieFetcher.sink.add(movieResponse);
   }
 
+  fetchAllMoviesImages(int movieId) async {
+    MovieImageResponse movieImageResponse = await _repository.fetchMovieImages(movieId);
+    _movieImageFetcher.sink.add(movieImageResponse);
+  }
+
+
   dispose(){
     _movieFetcher.close();
+    _movieImageFetcher.close();
   }
 
 }

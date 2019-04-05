@@ -10,4 +10,5 @@ class Repository {
   Future<MovieResponse> fetchMovieListUpComing()=> movieApiProvider.fetchMovieListUpComing();
   Future<MovieResponse> fetchMovieListTopRated()=> movieApiProvider.fetchMovieListTopRated();
 
+  Future<MovieImageResponse> fetchMovieImages(int movieId)=> movieApiProvider.fetchMovieImageList(movieId);
 }
