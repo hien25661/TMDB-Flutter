@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tmdb/ui/movie/movie_tab.dart';
+import 'package:flutter_tmdb/ui/movie/movie_tab_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

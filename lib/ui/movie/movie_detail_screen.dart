@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
+import 'package:flutter_tmdb/ui/movie/movie_image_screen.dart';
 import 'package:flutter_tmdb/ui/widget/network_image.dart';
+import 'package:flutter_tmdb/blocs/movie_bloc.dart';
 
 class MovieDetail extends StatefulWidget {
   Movie _movie;
@@ -39,10 +41,11 @@ class _MovieDetailState extends State<MovieDetail> {
       ],
     );
     final widgetTop = buildTopView(context);
+    final imageListView = buildImageMovieList(context);
 
-    final Column parent = new Column(
+    final parent = new Column(
       mainAxisSize: MainAxisSize.max,
-      children: <Widget>[widgetTop],
+      children: <Widget>[widgetTop, imageListView],
     );
 
     final NestedScrollView nestedScrollView = new NestedScrollView(
@@ -58,6 +61,7 @@ class _MovieDetailState extends State<MovieDetail> {
     return scaffold;
   }
 
+  //Build Top View
   Widget buildTopView(BuildContext context) {
     double widthPosterMovie = getScreenWidth(context) / 3.0;
     double heightPosterMovie = 3 * widthPosterMovie / 2.0;
@@ -124,5 +128,22 @@ class _MovieDetailState extends State<MovieDetail> {
         stack, overViewText
       ],
     ));
+  }
+
+  //Build movie image list
+  Widget buildImageMovieList(BuildContext context) {
+    movieBloc.fetchAllMoviesImages(_movie.id);
+    return new Container(
+      child: StreamBuilder(
+          stream: movieBloc.movieImageList,
+          builder: (BuildContext mContext,
+              AsyncSnapshot<MovieImageResponse> snapshot) {
+            if (snapshot.hasData) {
+              return new MovieImageWidget(images: snapshot.data.posters);
+            } else {
+              return new CircularProgressIndicator();
+            }
+          }),
+    );
   }
 }

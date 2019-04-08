@@ -128,8 +128,7 @@ class MovieImage {
   double _aspect_ratio;
   String _file_path;
   int _height;
-  String _iso_639_1;
-  int _vote_average;
+  double _vote_average;
   int _vote_count;
   int _width;
 
@@ -137,7 +136,6 @@ class MovieImage {
     _aspect_ratio = parsedJson['aspect_ratio'];
     _file_path = parsedJson['file_path'];
     _height = parsedJson['height'];
-    _iso_639_1 = parsedJson['iso_639_1'];
     _vote_average = parsedJson['vote_average'];
     _vote_count = parsedJson['vote_count'];
     _width = parsedJson['width'];
@@ -147,9 +145,7 @@ class MovieImage {
 
   int get vote_count => _vote_count;
 
-  int get vote_average => _vote_average;
-
-  String get iso_639_1 => _iso_639_1;
+  double get vote_average => _vote_average;
 
   int get height => _height;
 
