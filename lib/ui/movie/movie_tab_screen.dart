@@ -9,22 +9,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_tmdb/ui/helper/custom_page_route.dart';
 import 'package:flutter_tmdb/ui/widget/network_image.dart';
 
-class MovieTabScreen extends StatefulWidget {
+class MovieTabScreen extends StatelessWidget {
   int _indexTab;
 
   MovieTabScreen(this._indexTab);
 
   @override
-  _MovieTabScreenState createState() => _MovieTabScreenState(_indexTab);
-}
-
-class _MovieTabScreenState extends State<MovieTabScreen> {
-  int _indexTab;
-
-  _MovieTabScreenState(this._indexTab);
-
-  @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     switch (_indexTab) {
       case 1:
         movieBloc.fetchAllMoviesNowPlaying();
