@@ -136,10 +136,8 @@ class _MovieDetailState extends State<MovieDetail> {
             if (snapshot.hasData) {
               return new MovieImageWidget(images: snapshot.data.posters);
             } else {
-              return SizedBox(
-                child: CircularProgressIndicator(),
-                height: 10.0,
-                width: 10.0,
+              return Center(
+                child: new CircularProgressIndicator(),
               );
             }
           }),
