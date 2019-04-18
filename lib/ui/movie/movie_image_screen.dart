@@ -29,7 +29,5 @@ class MovieImageWidget extends StatelessWidget {
         itemBuilder:_buildItemImage
       ),
     );
-
-//   return new Text(images[0].file_path);
   }
 }
