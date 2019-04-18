@@ -41,22 +41,15 @@ class _MovieDetailState extends State<MovieDetail> {
       ],
     );
     final widgetTop = buildTopView(context);
-    final imageListView = buildImageMovieList(context);
+
 
     final parent = new Column(
       mainAxisSize: MainAxisSize.max,
-      children: <Widget>[widgetTop, imageListView],
+      children: <Widget>[widgetTop],
     );
-
-    final NestedScrollView nestedScrollView = new NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[appBar];
-        },
-        body: parent);
 
     final Scaffold scaffold = new Scaffold(
-      body: nestedScrollView,
-    );
+      body: parent);
 
     return scaffold;
   }
@@ -119,13 +112,15 @@ class _MovieDetailState extends State<MovieDetail> {
       ),
     );
 
+    final imageListView = buildImageMovieList(context);
+
     return new Expanded(
         child: new ListView(
       padding: EdgeInsets.all(0.0),
       shrinkWrap: true,
       children: <Widget>[
         //Your content
-        stack, overViewText
+        stack, overViewText, imageListView
       ],
     ));
   }
@@ -139,9 +134,13 @@ class _MovieDetailState extends State<MovieDetail> {
           builder: (BuildContext mContext,
               AsyncSnapshot<MovieImageResponse> snapshot) {
             if (snapshot.hasData) {
-              return new Text('Hello');
+              return new MovieImageWidget(images: snapshot.data.posters);
             } else {
-              return new CircularProgressIndicator();
+              return SizedBox(
+                child: CircularProgressIndicator(),
+                height: 10.0,
+                width: 10.0,
+              );
             }
           }),
     );
