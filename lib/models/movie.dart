@@ -153,5 +153,9 @@ class MovieImage {
 
   double get aspect_ratio => _aspect_ratio;
 
+  bool isPoster(){
+    return width > height;
+  }
+
 
 }
