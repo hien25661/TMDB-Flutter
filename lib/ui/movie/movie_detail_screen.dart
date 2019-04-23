@@ -134,7 +134,7 @@ class _MovieDetailState extends State<MovieDetail> {
           builder: (BuildContext mContext,
               AsyncSnapshot<MovieImageResponse> snapshot) {
             if (snapshot.hasData) {
-              return new MovieImageWidget(images: snapshot.data.posters);
+              return new MovieImageWidget(posterImages: snapshot.data.posters, backDropImages: snapshot.data.backdrops);
             } else {
               return Center(
                 child: new CircularProgressIndicator(),
