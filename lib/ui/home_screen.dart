@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 }
-
+//==
 class PlaceHolderWidget extends StatelessWidget {
   final Color color;
   final int _currentIndex;
@@ -125,6 +125,31 @@ class PlaceHolderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    switch(_currentIndex){
+      case 0:
+        return new MovieTab(currentIndex: 0);
+      case 1:
+        return new TVShowTab();
+      case 2:
+        return new ActorTab();
+      default:
+        return new ActorTab();
+    }
+  }
+}
+
+//=========================================================
+
+class MovieTab extends StatelessWidget {
+  const MovieTab({
+    Key key,
+    @required int currentIndex,
+  }) : _currentIndex = currentIndex, super(key: key);
+
+  final int _currentIndex;
+
+  @override
+  Widget build(BuildContext context) {
     List<Tab> tabs = new List();
     tabs.add(Tab(text: _currentIndex == 0 ? "NOW PLAYING" : "AIRING TODAY"));
     tabs.add(Tab(text: _currentIndex == 0 ? "POPULAR" : "ON THE AIR"));
@@ -153,9 +178,8 @@ class PlaceHolderWidget extends StatelessWidget {
       ],
     );
 
-    final Column column = new Column(children: <Widget>[tabBar]);
     return DefaultTabController(
-      length: 5,
+      length: tabs.length,
       child: Scaffold(
         appBar: new PreferredSize(
           preferredSize: Size.fromHeight(50),
@@ -170,4 +194,71 @@ class PlaceHolderWidget extends StatelessWidget {
     );
   }
 }
+
+//=========================================================
+
+class TVShowTab extends StatelessWidget {
+  const TVShowTab({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Tab> tabs = new List();
+    tabs.add(Tab(text: "AIRING TODAY"));
+    tabs.add(Tab(text: "ON THE AIR"));
+    tabs.add(Tab(text: "POPULAR"));
+    tabs.add(Tab(text: "TOP RATED"));
+
+    final TabBar tabBar = new TabBar(
+      isScrollable: true,
+      indicatorColor: Colors.amber,
+      labelColor: Colors.white70,
+      unselectedLabelColor: Colors.white,
+      tabs: tabs,
+      indicatorSize: TabBarIndicatorSize.tab,
+    );
+
+    final TabBarView tabBarView = new TabBarView(
+      children: <Widget>[
+        new MovieTabScreen(1),
+        new MovieTabScreen(2),
+        new MovieTabScreen(3),
+        new MovieTabScreen(4),
+      ],
+    );
+
+    return DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
+        appBar: new PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: Container(
+            color: Colors.blueGrey,
+            height: 50.0,
+            child: tabBar,
+          ),
+        ),
+        body: tabBarView,
+      ),
+    );
+  }
+}
+
+//=========================================================
+
+class ActorTab extends StatelessWidget {
+  const ActorTab({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      child: new Text('Actor')
+    );
+  }
+}
+
+
 

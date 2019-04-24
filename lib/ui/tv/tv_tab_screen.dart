@@ -10,10 +10,10 @@ import 'package:flutter_tmdb/ui/helper/custom_page_route.dart';
 import 'package:flutter_tmdb/ui/widget/network_image.dart';
 
 // ignore: must_be_immutable
-class MovieTabScreen extends StatelessWidget {
+class TVTabScreen extends StatelessWidget {
   int _indexTab;
 
-  MovieTabScreen(this._indexTab);
+  TVTabScreen(this._indexTab);
 
   @override
   Widget build(BuildContext context) {
