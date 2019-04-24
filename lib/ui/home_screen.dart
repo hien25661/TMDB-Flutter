@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/ui/movie/movie_tab_screen.dart';
+import 'package:flutter_tmdb/ui/tv/tv_tab_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -221,10 +222,10 @@ class TVShowTab extends StatelessWidget {
 
     final TabBarView tabBarView = new TabBarView(
       children: <Widget>[
-        new MovieTabScreen(1),
-        new MovieTabScreen(2),
-        new MovieTabScreen(3),
-        new MovieTabScreen(4),
+        new TVTabScreen(1),
+        new TVTabScreen(2),
+        new TVTabScreen(3),
+        new TVTabScreen(4),
       ],
     );
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tmdb/blocs/movie_bloc.dart';
-import 'package:flutter_tmdb/models/movie.dart';
+import 'package:flutter_tmdb/blocs/tv_bloc.dart';
+import 'package:flutter_tmdb/models/tv.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
-import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tmdb/ui/helper/custom_page_route.dart';
@@ -20,16 +19,16 @@ class TVTabScreen extends StatelessWidget {
     // TODO: implement build
     switch (_indexTab) {
       case 1:
-        movieBloc.fetchAllMoviesNowPlaying();
+        tvBloc.fetchAllTvAiringToday();
         break;
       case 2:
-        movieBloc.fetchAllMoviesPopular();
+        tvBloc.fetchAllTvOnTheAir();
         break;
       case 3:
-        movieBloc.fetchAllMoviesUpComing();
+        tvBloc.fetchAllTvPopular();
         break;
       case 4:
-        movieBloc.fetchAllMoviesTopRated();
+        tvBloc.fetchAllTvTopRated();
         break;
       default:
         break;
@@ -37,8 +36,8 @@ class TVTabScreen extends StatelessWidget {
     if (_indexTab < 5) {
       return Container(
         child: StreamBuilder(
-            stream: movieBloc.movieList,
-            builder: (context, AsyncSnapshot<MovieResponse> snapshot) {
+            stream: tvBloc.tvShowList,
+            builder: (context, AsyncSnapshot<TvResponse> snapshot) {
               if (snapshot.hasData) {
                 return buildList(context, snapshot);
               } else {
@@ -47,18 +46,18 @@ class TVTabScreen extends StatelessWidget {
             }),
       );
     } else {
-      return MovieSearch();
+      return new Container();
     }
   }
 }
 
-Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
+Widget buildList(BuildContext context, AsyncSnapshot<TvResponse> snapshot) {
   double sizeImageWidth = getScreenWidth(context) / 3.0;
   double sizeImageHeight = 3.0 * sizeImageWidth / 2.0 + 50;
 
-  openDetailMoviePage(Movie movie) {
-    print(movie.title);
-    Navigator.push(context, FadeTransactionPageRoute(new MovieDetail(movie)));
+  openDetailMoviePage(Tv tv) {
+    print(tv.name);
+    //Navigator.push(context, FadeTransactionPageRoute(new MovieDetail(movie)));
   }
 
   return GridView.builder(
@@ -67,12 +66,12 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
         crossAxisSpacing: 2.0,
         childAspectRatio: sizeImageWidth / sizeImageHeight),
     itemBuilder: (BuildContext context, int index) {
-      final Movie movie = snapshot.data.results[index];
+      final Tv tv = snapshot.data.results[index];
       final image = new ImageNetWork(
-          'https://image.tmdb.org/t/p/w500${movie.poster_path}',
+          'https://image.tmdb.org/t/p/w500${tv.poster_path}',
           imageMoviePosterPlaceHolder);
       final textName = Text(
-        movie.title,
+        tv.name,
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
         maxLines: 2,
@@ -82,7 +81,7 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
       );
 
       final GestureDetector gestureDetector = new GestureDetector(
-        onTap: () => openDetailMoviePage(movie),
+        onTap: () => openDetailMoviePage(tv),
         child: column,
       );
       return gestureDetector;
