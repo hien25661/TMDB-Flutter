@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/blocs/movie_bloc.dart';
 import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
+import 'package:flutter_tmdb/resources/enum.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
 import 'package:flutter_tmdb/ui/movie/movie_detail_screen.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
@@ -11,44 +12,44 @@ import 'package:flutter_tmdb/ui/widget/network_image.dart';
 
 // ignore: must_be_immutable
 class MovieTabScreen extends StatelessWidget {
-  int _indexTab;
+  MovieApiType movieApiType;
 
-  MovieTabScreen(this._indexTab);
+  MovieTabScreen({Key key, this.movieApiType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    switch (_indexTab) {
-      case 1:
+    switch (movieApiType) {
+      case MovieApiType.NOW_PLAYING:
         movieBloc.fetchAllMoviesNowPlaying();
         break;
-      case 2:
+      case MovieApiType.POPULAR:
         movieBloc.fetchAllMoviesPopular();
         break;
-      case 3:
+      case MovieApiType.UPCOMING:
         movieBloc.fetchAllMoviesUpComing();
         break;
-      case 4:
+      case MovieApiType.TOP_RATED:
         movieBloc.fetchAllMoviesTopRated();
         break;
+      case MovieApiType.MOVIE_BY_YEAR:
+        return MovieSearch();
       default:
         break;
     }
-    if (_indexTab < 5) {
-      return Container(
-        child: StreamBuilder(
-            stream: movieBloc.movieList,
-            builder: (context, AsyncSnapshot<MovieResponse> snapshot) {
-              if (snapshot.hasData) {
-                return buildList(context, snapshot);
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }),
-      );
-    } else {
-      return MovieSearch();
-    }
+
+
+    return Container(
+      child: StreamBuilder(
+          stream: movieBloc.movieList,
+          builder: (context, AsyncSnapshot<MovieResponse> snapshot) {
+            if (snapshot.hasData) {
+              return buildList(context, snapshot);
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+    );
   }
 }
 

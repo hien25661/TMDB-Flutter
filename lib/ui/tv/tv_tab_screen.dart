@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/blocs/tv_bloc.dart';
 import 'package:flutter_tmdb/models/tv.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
+import 'package:flutter_tmdb/resources/enum.dart';
 import 'package:flutter_tmdb/resources/utils.dart';
 import 'package:flutter_tmdb/ui/movie/search_movie_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,44 +11,39 @@ import 'package:flutter_tmdb/ui/widget/network_image.dart';
 
 // ignore: must_be_immutable
 class TVTabScreen extends StatelessWidget {
-  int _indexTab;
+  TvShowApiType tvShowApiType;
 
-  TVTabScreen(this._indexTab);
+  TVTabScreen({Key key, this.tvShowApiType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    switch (_indexTab) {
-      case 1:
+    switch (tvShowApiType) {
+      case TvShowApiType.Airing_Today:
         tvBloc.fetchAllTvAiringToday();
         break;
-      case 2:
+      case TvShowApiType.On_The_Air:
         tvBloc.fetchAllTvOnTheAir();
         break;
-      case 3:
+      case TvShowApiType.POPULAR:
         tvBloc.fetchAllTvPopular();
         break;
-      case 4:
+      case TvShowApiType.TOP_RATED:
         tvBloc.fetchAllTvTopRated();
         break;
       default:
         break;
     }
-    if (_indexTab < 5) {
-      return Container(
-        child: StreamBuilder(
-            stream: tvBloc.tvShowList,
-            builder: (context, AsyncSnapshot<TvResponse> snapshot) {
-              if (snapshot.hasData) {
-                return buildList(context, snapshot);
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }),
-      );
-    } else {
-      return new Container();
-    }
+    return Container(
+      child: StreamBuilder(
+          stream: tvBloc.tvShowList,
+          builder: (context, AsyncSnapshot<TvResponse> snapshot) {
+            if (snapshot.hasData) {
+              return buildList(context, snapshot);
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+    );
   }
 }
 

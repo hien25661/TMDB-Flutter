@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tmdb/resources/enum.dart';
 import 'package:flutter_tmdb/ui/movie/movie_tab_screen.dart';
 import 'package:flutter_tmdb/ui/tv/tv_tab_screen.dart';
 
@@ -171,11 +172,11 @@ class MovieTab extends StatelessWidget {
 
     final TabBarView tabBarView = new TabBarView(
       children: <Widget>[
-        new MovieTabScreen(1),
-        new MovieTabScreen(2),
-        new MovieTabScreen(3),
-        new MovieTabScreen(4),
-        new MovieTabScreen(5),
+        new MovieTabScreen(movieApiType: MovieApiType.NOW_PLAYING),
+        new MovieTabScreen(movieApiType: MovieApiType.POPULAR),
+        new MovieTabScreen(movieApiType: MovieApiType.UPCOMING),
+        new MovieTabScreen(movieApiType: MovieApiType.TOP_RATED),
+        new MovieTabScreen(movieApiType: MovieApiType.MOVIE_BY_YEAR),
       ],
     );
 
@@ -222,10 +223,10 @@ class TVShowTab extends StatelessWidget {
 
     final TabBarView tabBarView = new TabBarView(
       children: <Widget>[
-        new TVTabScreen(1),
-        new TVTabScreen(2),
-        new TVTabScreen(3),
-        new TVTabScreen(4),
+        new TVTabScreen(tvShowApiType: TvShowApiType.Airing_Today),
+        new TVTabScreen(tvShowApiType: TvShowApiType.On_The_Air),
+        new TVTabScreen(tvShowApiType: TvShowApiType.POPULAR),
+        new TVTabScreen(tvShowApiType: TvShowApiType.TOP_RATED),
       ],
     );
 
