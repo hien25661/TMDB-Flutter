@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:http/http.dart' show Client;
 import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
