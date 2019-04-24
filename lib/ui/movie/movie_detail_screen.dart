@@ -22,7 +22,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final SliverAppBar appBar = new SliverAppBar(
+    final AppBar appBar = new AppBar(
       title: Text(_movie.title),
       backgroundColor: Colors.blueGrey,
       actions: <Widget>[
@@ -49,6 +49,7 @@ class _MovieDetailState extends State<MovieDetail> {
     );
 
     final Scaffold scaffold = new Scaffold(
+      appBar: appBar,
       body: parent);
 
     return scaffold;
