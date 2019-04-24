@@ -116,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 }
+
 //==
 class PlaceHolderWidget extends StatelessWidget {
   final Color color;
@@ -125,8 +126,7 @@ class PlaceHolderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    switch(_currentIndex){
+    switch (_currentIndex) {
       case 0:
         return new MovieTab(currentIndex: 0);
       case 1:
@@ -145,20 +145,20 @@ class MovieTab extends StatelessWidget {
   const MovieTab({
     Key key,
     @required int currentIndex,
-  }) : _currentIndex = currentIndex, super(key: key);
+  })  : _currentIndex = currentIndex,
+        super(key: key);
 
   final int _currentIndex;
 
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = new List();
-    tabs.add(Tab(text: _currentIndex == 0 ? "NOW PLAYING" : "AIRING TODAY"));
-    tabs.add(Tab(text: _currentIndex == 0 ? "POPULAR" : "ON THE AIR"));
-    tabs.add(Tab(text: _currentIndex == 0 ? "UPCOMMING" : "POPULAR"));
-    tabs.add( Tab(text: "TOP RATED"));
-    if(_currentIndex == 0){
-      tabs.add(Tab(text: "MOVIE BY YEAR"));
-    }
+
+    tabs.add(Tab(text: "NOW PLAYING"));
+    tabs.add(Tab(text: "POPULAR"));
+    tabs.add(Tab(text: "UPCOMMING"));
+    tabs.add(Tab(text: "TOP RATED"));
+    tabs.add(Tab(text: "MOVIE BY YEAR"));
 
     final TabBar tabBar = new TabBar(
       isScrollable: true,
@@ -255,11 +255,6 @@ class ActorTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new Text('Actor')
-    );
+    return new Container(child: new Text('Actor'));
   }
 }
-
-
-
