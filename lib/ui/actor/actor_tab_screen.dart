@@ -34,12 +34,12 @@ class ActorTabScreen extends StatelessWidget {
           childAspectRatio: sizeImageWidth / sizeImageHeight),
       itemBuilder: (BuildContext context, int index) {
         final Actor actor = snapshot.data.results[index];
-        print('https://image.tmdb.org/t/p/w500${actor.profilePath}');
+        print('https://image.tmdb.org/t/p/w500/lRSqMNNhPL4Ib1hAJxmDFBXHAMU.jpg');
         final image = new ImageNetWork(
-            'https://image.tmdb.org/t/p/w500${actor.profilePath}',
+            'https://image.tmdb.org/t/p/w500/lRSqMNNhPL4Ib1hAJxmDFBXHAMU.jpg',
             imageMoviePosterPlaceHolder);
         final textName = Text(
-          actor.name,
+          'Emilia Clarke',
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
