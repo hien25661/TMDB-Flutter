@@ -81,9 +81,6 @@ class _MovieDetailState extends State<MovieDetail> {
         children: <Widget>[
           Text(_movie.title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          Text(_movie.original_language,
-              textAlign: TextAlign.left,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
         ],
       ),
     );
