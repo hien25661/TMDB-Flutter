@@ -32,20 +32,27 @@ class _MovieSearchState extends State<MovieSearch> {
 
   @override
   Widget build(BuildContext context) {
+    final Center dropDown = Center(
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            new DropdownButton(
+              value: currentYear.toString(),
+              items: _dropDownMenuItems,
+              onChanged: changeYearItem,
+            )
+          ],
+        ));
+    final ListView listView = ListView(
+      padding: EdgeInsets.all(0.0),
+      children: <Widget>[
+        dropDown
+      ],
+    );
     return new Container(
       color: Colors.white,
-      child: new Center(
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              new DropdownButton(
-                value: currentYear.toString(),
-                items: _dropDownMenuItems,
-                onChanged: changeYearItem,
-              )
-            ],
-          )),
+      child: listView
     );
   }
 
