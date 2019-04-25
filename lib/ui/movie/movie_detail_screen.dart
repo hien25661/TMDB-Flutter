@@ -72,7 +72,7 @@ class _MovieDetailState extends State<MovieDetail> {
       width: widthPosterMovie,
       height: heightPosterMovie,
       margin: EdgeInsets.only(left: 10, top: 140),
-      child: posterImage,
+      child: Hero(tag: '${_movie.poster_path}', child: posterImage),
     );
 
     final containerInfor = new Container(

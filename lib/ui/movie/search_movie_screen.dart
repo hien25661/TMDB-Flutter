@@ -47,17 +47,14 @@ class _MovieSearchState extends State<MovieSearch> {
             )
           ],
         ));
-    final SingleChildScrollView listView = SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          dropDown,
-          ListView(
-            children: <Widget>[
-              new MovieTabScreen(movieApiType: MovieApiType.TOP_RATED)
-            ],
-          )
-        ],
-      ),
+    final ListView listView = ListView(
+      children: <Widget>[
+        dropDown,
+        Container(
+          height: getScreenHeight(context),
+          child:  MovieTabScreen(movieApiType: MovieApiType.TOP_RATED),
+        )
+      ],
     );
     return new Container(
       color: Colors.white,

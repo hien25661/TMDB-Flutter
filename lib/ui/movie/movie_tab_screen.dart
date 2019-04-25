@@ -38,7 +38,6 @@ class MovieTabScreen extends StatelessWidget {
         break;
     }
 
-
     return Container(
       child: StreamBuilder(
           stream: movieBloc.movieList,
@@ -79,7 +78,11 @@ Widget buildList(BuildContext context, AsyncSnapshot<MovieResponse> snapshot) {
         maxLines: 2,
       );
       final column = Column(
-        children: <Widget>[image, SizedBox(height: 10), textName],
+        children: <Widget>[
+          Hero(tag: '${movie.poster_path}', child: image),
+          SizedBox(height: 10),
+          textName
+        ],
       );
 
       final GestureDetector gestureDetector = new GestureDetector(
