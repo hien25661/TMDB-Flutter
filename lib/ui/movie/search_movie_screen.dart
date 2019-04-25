@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/resources/app_constant.dart';
+import 'package:flutter_tmdb/resources/enum.dart';
+import 'package:flutter_tmdb/resources/utils.dart';
+import 'package:flutter_tmdb/ui/movie/movie_tab_screen.dart';
 
 class MovieSearch extends StatefulWidget {
   @override
@@ -44,11 +47,17 @@ class _MovieSearchState extends State<MovieSearch> {
             )
           ],
         ));
-    final ListView listView = ListView(
-      padding: EdgeInsets.all(0.0),
-      children: <Widget>[
-        dropDown
-      ],
+    final SingleChildScrollView listView = SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          dropDown,
+          ListView(
+            children: <Widget>[
+              new MovieTabScreen(movieApiType: MovieApiType.TOP_RATED)
+            ],
+          )
+        ],
+      ),
     );
     return new Container(
       color: Colors.white,
