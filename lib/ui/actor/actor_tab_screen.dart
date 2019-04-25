@@ -57,5 +57,7 @@ class ActorTabScreen extends StatelessWidget {
     );
   }
 
-  openDetailMoviePage(actor) {}
+  openDetailMoviePage(Actor actor) {
+    print(actor.name);
+  }
 }
