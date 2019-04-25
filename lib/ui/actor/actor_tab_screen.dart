@@ -34,7 +34,6 @@ class ActorTabScreen extends StatelessWidget {
           childAspectRatio: sizeImageWidth / sizeImageHeight),
       itemBuilder: (BuildContext context, int index) {
         final Actor actor = snapshot.data.results[index];
-        print('https://image.tmdb.org/t/p/w500${actor.profilePath}');
         final image = new ImageNetWork(
             'https://image.tmdb.org/t/p/w500${actor.profilePath}',
             imageMoviePosterPlaceHolder);
