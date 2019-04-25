@@ -137,6 +137,7 @@ class PlaceHolderWidget extends StatelessWidget {
       case HomeTab.MORE:
         return new ActorTab();
     }
+    return Container();
   }
 }
 

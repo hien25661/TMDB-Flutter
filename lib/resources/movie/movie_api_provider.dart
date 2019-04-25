@@ -48,6 +48,7 @@ class MovieApiProvider {
     }
   }
 
+  //Fetch list Image movie
   Future<MovieImageResponse> fetchMovieImageList(int movieId) async {
     final response = await client.get(movieImageApi(movieId));
     if(response.statusCode == 200){
