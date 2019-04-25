@@ -10,7 +10,7 @@ class ActorApiProvider {
 
   //Fetch Actor Popular
   Future<ActorResponse> fetchActorPopular() async{
-    final response =await client.get(nowPlayingApi);
+    final response =await client.get(actorPopularApi);
     if(response.statusCode == 200){
       return ActorResponse.fromJson(json.decode(response.body));
     }else {

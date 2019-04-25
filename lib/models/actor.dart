@@ -113,7 +113,7 @@ class KnownFor {
   String _mediaType;
   String _name;
   int _voteCount;
-  double _voteAverage;
+  var _voteAverage;
   String _posterPath;
   String _firstAirDate;
   double _popularity;
@@ -121,7 +121,7 @@ class KnownFor {
   String _originalLanguage;
   String _backdropPath;
   String _overview;
-  List<String> _originCountry;
+  List<String> _originCountry=[];
 
   KnownFor(
       {String originalName,
@@ -196,7 +196,14 @@ class KnownFor {
     _originalLanguage = json['original_language'];
     _backdropPath = json['backdrop_path'];
     _overview = json['overview'];
-    _originCountry = json['origin_country'].cast<String>();
+
+    List<String> temp = new List();
+    if(json['origin_country']!=null){
+      json['origin_country'].forEach((v) {
+        temp.add(v);
+      });
+    }
+    _originCountry = temp;
   }
 
   Map<String, dynamic> toJson() {
