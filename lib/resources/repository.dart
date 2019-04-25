@@ -3,8 +3,10 @@ import 'dart:async';
 
 import 'package:flutter_tmdb/resources/movie/movie_api_provider.dart';
 import 'tv/tv_api_provider.dart';
+import 'actor/actor_api_provider.dart';
 import 'package:flutter_tmdb/models/movie.dart';
 import 'package:flutter_tmdb/models/tv.dart';
+import 'package:flutter_tmdb/models/actor.dart';
 
 class Repository {
 
@@ -26,5 +28,11 @@ class Repository {
   Future<TvResponse> fetchTVShowListOnTheAir()=> tvApiProvider.fetchTVShowListOnTheAir();
   Future<TvResponse> fetchTVShowListPopular()=> tvApiProvider.fetchTVShowListPopular();
   Future<TvResponse> fetchTVShowListTopRated()=> tvApiProvider.fetchTVShowListTopRated();
+
+  //Actor
+  ActorApiProvider actorApiProvider = new ActorApiProvider();
+
+  Future<ActorResponse> fetchActorPopular()=>actorApiProvider.fetchActorPopular();
+
 
 }

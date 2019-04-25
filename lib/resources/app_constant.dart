@@ -17,16 +17,17 @@ final List<String> years = [
 ];
 
 final _apiKey = 'bf3adb6587aeecadb0fb4719e5ad97b5';
+final _host = 'http://api.themoviedb.org/3';
 
 //Movie Api
 final String nowPlayingApi =
-    "http://api.themoviedb.org/3/movie/now_playing?api_key=$_apiKey";
+    "$_host/movie/now_playing?api_key=$_apiKey";
 final String popularApi =
-    "http://api.themoviedb.org/3/movie/popular?api_key=$_apiKey";
+    "$_host/movie/popular?api_key=$_apiKey";
 final String upComingApi =
-    "http://api.themoviedb.org/3/movie/upcoming?api_key=$_apiKey";
+    "$_host/movie/upcoming?api_key=$_apiKey";
 final String topRatedApi =
-    "http://api.themoviedb.org/3/movie/top_rated?api_key=$_apiKey";
+    "$_host/movie/top_rated?api_key=$_apiKey";
 
 String movieImageApi(int movieId) {
   return "http://api.themoviedb.org/3/movie/$movieId/images?api_key=$_apiKey";
@@ -34,10 +35,14 @@ String movieImageApi(int movieId) {
 //==============================================================================
 //TV Api
 final String tvAiringTodayApi =
-    "http://api.themoviedb.org/3/tv/airing_today?api_key=$_apiKey";
+    "$_host/tv/airing_today?api_key=$_apiKey";
 final String tvOnTheAirApi =
-    "http://api.themoviedb.org/3/tv/on_the_air?api_key=$_apiKey";
+    "$_host/tv/on_the_air?api_key=$_apiKey";
 final String tvPopularApi =
-    "http://api.themoviedb.org/3/tv/popular?api_key=$_apiKey";
+    "$_host/tv/popular?api_key=$_apiKey";
 final String tvTopRatedApi =
-    "http://api.themoviedb.org/3/tv/top_rated?api_key=$_apiKey";
+    "$_host/tv/top_rated?api_key=$_apiKey";
+
+//==============================================================================
+//Actor Api
+final String actorPopularApi = "$_host/person/popular?api_key=$_apiKey";

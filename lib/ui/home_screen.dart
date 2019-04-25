@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tmdb/resources/enum.dart';
+import 'package:flutter_tmdb/ui/actor/actor_tab_screen.dart';
 import 'package:flutter_tmdb/ui/movie/movie_tab_screen.dart';
 import 'package:flutter_tmdb/ui/tv/tv_tab_screen.dart';
 
@@ -253,6 +254,6 @@ class ActorTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(child: new Text('Actor'));
+    return ActorTabScreen();
   }
 }
