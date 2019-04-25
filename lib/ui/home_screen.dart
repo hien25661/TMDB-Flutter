@@ -11,10 +11,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    new PlaceHolderWidget(Colors.white, 0),
-    new PlaceHolderWidget(Colors.deepOrange, 1),
-    new PlaceHolderWidget(Colors.green, 2),
-    new PlaceHolderWidget(Colors.amber, 3)
+    new PlaceHolderWidget(tab: HomeTab.MOVIES),
+    new PlaceHolderWidget(tab: HomeTab.TV),
+    new PlaceHolderWidget(tab: HomeTab.ACTOR),
+    new PlaceHolderWidget(tab: HomeTab.MORE)
   ];
   BuildContext mContext;
 
@@ -120,21 +120,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
 //==
 class PlaceHolderWidget extends StatelessWidget {
-  final Color color;
-  final int _currentIndex;
 
-  PlaceHolderWidget(this.color, this._currentIndex);
+  final HomeTab tab;
+
+  PlaceHolderWidget({Key key, this.tab}) : super(key:key);
 
   @override
   Widget build(BuildContext context) {
-    switch (_currentIndex) {
-      case 0:
-        return new MovieTab(currentIndex: 0);
-      case 1:
+    switch (tab) {
+      case HomeTab.MOVIES:
+        return new MovieTab();
+      case HomeTab.TV:
         return new TVShowTab();
-      case 2:
+      case HomeTab.ACTOR:
         return new ActorTab();
-      default:
+      case HomeTab.MORE:
         return new ActorTab();
     }
   }
@@ -145,11 +145,7 @@ class PlaceHolderWidget extends StatelessWidget {
 class MovieTab extends StatelessWidget {
   const MovieTab({
     Key key,
-    @required int currentIndex,
-  })  : _currentIndex = currentIndex,
-        super(key: key);
-
-  final int _currentIndex;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

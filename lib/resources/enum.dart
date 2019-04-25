@@ -1,4 +1,11 @@
 
+enum HomeTab {
+  MOVIES,
+  TV,
+  ACTOR,
+  MORE
+}
+
 enum MovieApiType {
   NOW_PLAYING,
   POPULAR,
