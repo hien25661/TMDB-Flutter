@@ -1,18 +1,17 @@
 
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter_tmdb/resources/app_constant.dart';
-import 'package:http/http.dart';
 import 'package:flutter_tmdb/models/actor.dart';
+import 'package:dio/dio.dart';
 
 class ActorApiProvider {
-  Client client = new Client();
+  Dio dio = new Dio();
 
   //Fetch Actor Popular
   Future<ActorResponse> fetchActorPopular() async{
-    final response =await client.get(actorPopularApi);
+    final response =await dio.get(actorPopularApi);
     if(response.statusCode == 200){
-      return ActorResponse.fromJson(json.decode(response.body));
+      return ActorResponse.fromJson(response.data);
     }else {
       throw Exception("Failed to get data");
     }
