@@ -116,7 +116,7 @@ class KnownFor {
   var _voteAverage;
   String _posterPath;
   String _firstAirDate;
-  double _popularity;
+  var _popularity;
   List<int> _genreIds;
   String _originalLanguage;
   String _backdropPath;
